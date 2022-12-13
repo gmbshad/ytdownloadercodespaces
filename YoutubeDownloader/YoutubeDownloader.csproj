@@ -1,4 +1,4 @@
-﻿<Project Sdk="any">
+﻿<Project Sdk=".Net">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>

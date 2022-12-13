@@ -1,0 +1,9 @@
+{
+    "tools": [
+        {
+            "key": "TOOLCHAIN_PATH",
+            "val": "",
+            "is_path": true
+        }
+    ]
+}
