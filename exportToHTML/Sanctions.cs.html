@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Sanctions.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c679dd; font-style: italic;}
+.s1 { color: #abb2bf;}
+.s2 { color: #98c379;}
+.s3 { color: #abb2bf;}
+.s4 { color: #d19a66;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Sanctions.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">System;</span>
+<span class="s0">using </span><span class="s1">System.Globalization;</span>
+<span class="s0">using </span><span class="s1">System.Runtime.CompilerServices;</span>
+<span class="s0">using </span><span class="s1">System.Windows;</span>
+<span class="s0">using </span><span class="s1">Microsoft.Win32;</span>
+
+<span class="s0">namespace </span><span class="s1">YoutubeDownloader;</span>
+
+<span class="s0">public static class </span><span class="s1">Sanctions</span>
+<span class="s1">{</span>
+    <span class="s1">[ModuleInitializer]</span>
+    <span class="s0">internal static void </span><span class="s1">Verify()</span>
+    <span class="s1">{</span>
+        <span class="s1">var isSkipped = </span><span class="s0">string</span><span class="s1">.Equals(</span>
+            <span class="s1">Environment.GetEnvironmentVariable(</span><span class="s2">&quot;RUSNI&quot;</span><span class="s1">),</span>
+            <span class="s2">&quot;PYZDA&quot;</span><span class="s1">,</span>
+            <span class="s1">StringComparison.OrdinalIgnoreCase</span>
+        <span class="s1">);</span>
+
+        <span class="s0">if </span><span class="s1">(isSkipped)</span>
+            <span class="s0">return</span><span class="s1">;</span>
+
+        <span class="s1">var locale = CultureInfo.CurrentCulture.Name;</span>
+
+        <span class="s1">var region = Registry.CurrentUser</span>
+            <span class="s1">.OpenSubKey(@</span><span class="s2">&quot;Control Panel</span><span class="s3">\I</span><span class="s2">nternational</span><span class="s3">\G</span><span class="s2">eo&quot;</span><span class="s1">, </span><span class="s0">false</span><span class="s1">)?</span>
+            <span class="s1">.GetValue(</span><span class="s2">&quot;Name&quot;</span><span class="s1">) </span><span class="s0">as string</span><span class="s1">;</span>
+
+        <span class="s1">var isSanctioned =</span>
+            <span class="s1">locale.EndsWith(</span><span class="s2">&quot;-ru&quot;</span><span class="s1">, StringComparison.OrdinalIgnoreCase) ||</span>
+            <span class="s1">locale.EndsWith(</span><span class="s2">&quot;-by&quot;</span><span class="s1">, StringComparison.OrdinalIgnoreCase) ||</span>
+            <span class="s0">string</span><span class="s1">.Equals(region, </span><span class="s2">&quot;ru&quot;</span><span class="s1">, StringComparison.OrdinalIgnoreCase) ||</span>
+            <span class="s0">string</span><span class="s1">.Equals(region, </span><span class="s2">&quot;by&quot;</span><span class="s1">, StringComparison.OrdinalIgnoreCase);</span>
+
+        <span class="s0">if </span><span class="s1">(!isSanctioned)</span>
+            <span class="s0">return</span><span class="s1">;</span>
+
+        <span class="s1">MessageBox.Show(</span>
+            <span class="s2">&quot;You cannot use this software on the territory of a terrorist state. &quot; </span><span class="s1">+</span>
+            <span class="s2">&quot;Set the environment variable `RUSNI=PYZDA` if you wish to override this check.&quot;</span><span class="s1">,</span>
+            <span class="s2">&quot;Sanctioned region&quot;</span><span class="s1">,</span>
+            <span class="s1">MessageBoxButton.OK,</span>
+            <span class="s1">MessageBoxImage.Error</span>
+        <span class="s1">);</span>
+
+        <span class="s1">Environment.Exit(</span><span class="s4">0</span><span class="s1">xFACC);</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

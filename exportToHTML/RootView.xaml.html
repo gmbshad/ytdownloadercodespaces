@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>RootView.xaml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #f07178;}
+.s1 { color: #61aeef;}
+.s2 { color: #e5c17c; font-style: italic;}
+.s3 { color: #a6b2c0; font-style: italic;}
+.s4 { color: #a6b2c0;}
+.s5 { color: #98c379;}
+.s6 { color: #abb2bf;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+RootView.xaml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;Window</span>
+    <span class="s2">x</span><span class="s3">:</span><span class="s2">Class</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">YoutubeDownloader.Views.RootView</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.microsoft.com/winfx/2006/xaml/presentation</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">x</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.microsoft.com/winfx/2006/xaml</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">d</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.microsoft.com/expression/blend/2008</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">materialDesign</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://materialdesigninxaml.net/winfx/xaml/themes</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">mc</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.openxmlformats.org/markup-compatibility/2006</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">s</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">https://github.com/canton7/Stylet</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">viewModels</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">clr-namespace:YoutubeDownloader.ViewModels</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">converters</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">clr-namespace:YoutubeDownloader.Converters</span><span class="s4">&quot;</span>
+    <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">600</span><span class="s4">&quot;</span>
+    <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">580</span><span class="s4">&quot;</span>
+    <span class="s2">d</span><span class="s3">:</span><span class="s2">DataContext</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{d:DesignInstance Type=viewModels:RootViewModel}</span><span class="s4">&quot;</span>
+    <span class="s2">Background</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignBackground}</span><span class="s4">&quot;</span>
+    <span class="s2">Icon</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">/YoutubeDownloader;component/favicon.ico</span><span class="s4">&quot;</span>
+    <span class="s2">Style</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignRoot}</span><span class="s4">&quot;</span>
+    <span class="s2">WindowStartupLocation</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">CenterScreen</span><span class="s4">&quot;</span>
+    <span class="s2">mc</span><span class="s3">:</span><span class="s2">Ignorable</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">d</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;Window.TaskbarItemInfo&gt;</span>
+        <span class="s0">&lt;TaskbarItemInfo </span><span class="s2">ProgressState</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Normal</span><span class="s4">&quot; </span><span class="s2">ProgressValue</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Dashboard.Progress.Current.Fraction}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+    <span class="s0">&lt;/Window.TaskbarItemInfo&gt;</span>
+    <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">DialogHost</span>
+        <span class="s2">x</span><span class="s3">:</span><span class="s2">Name</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">DialogHost</span><span class="s4">&quot;</span>
+        <span class="s2">CloseOnClickAway</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">True</span><span class="s4">&quot;</span>
+        <span class="s2">Loaded</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action OnViewFullyLoaded}</span><span class="s4">&quot;</span>
+        <span class="s2">SnackbarMessageQueue</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Notifications}</span><span class="s4">&quot;</span>
+        <span class="s2">Style</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignEmbeddedDialogHost}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+        <span class="s0">&lt;Grid </span><span class="s2">IsEnabled</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding IsOpen, ElementName=DialogHost, Converter={x:Static converters:InverseBoolConverter.Instance}}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;ContentControl </span><span class="s2">s</span><span class="s3">:</span><span class="s2">View.Model</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Dashboard}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">Snackbar </span><span class="s2">MessageQueue</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Notifications}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+        <span class="s0">&lt;/Grid&gt;</span>
+    <span class="s0">&lt;/materialDesign</span><span class="s4">:</span><span class="s0">DialogHost&gt;</span>
+<span class="s0">&lt;/Window&gt;</span></pre>
+</body>
+</html>

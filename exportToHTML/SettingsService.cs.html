@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>SettingsService.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c679dd; font-style: italic;}
+.s1 { color: #abb2bf;}
+.s2 { color: #98c379;}
+.s3 { color: #d19a66;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SettingsService.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">Microsoft.Win32;</span>
+<span class="s0">using </span><span class="s1">Tyrrrz.Settings;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.Core.Downloading;</span>
+<span class="s0">using </span><span class="s1">YoutubeExplode.Videos.Streams;</span>
+
+<span class="s0">namespace </span><span class="s1">YoutubeDownloader.Services;</span>
+
+<span class="s0">public </span><span class="s1">partial </span><span class="s0">class </span><span class="s1">SettingsService : SettingsManager</span>
+<span class="s1">{</span>
+    <span class="s0">public bool </span><span class="s1">IsAutoUpdateEnabled { get; set; } = </span><span class="s0">true</span><span class="s1">;</span>
+
+    <span class="s0">public bool </span><span class="s1">IsDarkModeEnabled { get; set; } = IsDarkModeEnabledByDefault();</span>
+
+    <span class="s0">public bool </span><span class="s1">ShouldInjectTags { get; set; } = </span><span class="s0">true</span><span class="s1">;</span>
+
+    <span class="s0">public bool </span><span class="s1">ShouldSkipExistingFiles { get; set; }</span>
+
+    <span class="s0">public string </span><span class="s1">FileNameTemplate { get; set; } = </span><span class="s2">&quot;$title&quot;</span><span class="s1">;</span>
+
+    <span class="s0">public int </span><span class="s1">ParallelLimit { get; set; } = </span><span class="s3">2</span><span class="s1">;</span>
+
+    <span class="s0">public </span><span class="s1">Container LastContainer { get; set; } = Container.Mp4;</span>
+
+    <span class="s0">public </span><span class="s1">VideoQualityPreference LastVideoQualityPreference { get; set; } = VideoQualityPreference.Highest;</span>
+
+    <span class="s0">public </span><span class="s1">SettingsService()</span>
+    <span class="s1">{</span>
+        <span class="s1">Configuration.StorageSpace = StorageSpace.Instance;</span>
+        <span class="s1">Configuration.SubDirectoryPath = </span><span class="s2">&quot;&quot;</span><span class="s1">;</span>
+        <span class="s1">Configuration.FileName = </span><span class="s2">&quot;Settings.dat&quot;</span><span class="s1">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+<span class="s0">public </span><span class="s1">partial </span><span class="s0">class </span><span class="s1">SettingsService</span>
+<span class="s1">{</span>
+    <span class="s0">private static bool </span><span class="s1">IsDarkModeEnabledByDefault()</span>
+    <span class="s1">{</span>
+        <span class="s0">try</span>
+        <span class="s1">{</span>
+            <span class="s0">return </span><span class="s1">Registry.CurrentUser.OpenSubKey(</span>
+                <span class="s2">&quot;SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize&quot;</span><span class="s1">,</span>
+                <span class="s0">false</span>
+            <span class="s1">)?.GetValue(</span><span class="s2">&quot;AppsUseLightTheme&quot;</span><span class="s1">) </span><span class="s0">is </span><span class="s3">0</span><span class="s1">;</span>
+        <span class="s1">}</span>
+        <span class="s0">catch</span>
+        <span class="s1">{</span>
+            <span class="s0">return false</span><span class="s1">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<html>
+<head>
+<title>DownloadMultipleSetupView.xaml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #f07178;}
+.s1 { color: #61aeef;}
+.s2 { color: #e5c17c; font-style: italic;}
+.s3 { color: #a6b2c0; font-style: italic;}
+.s4 { color: #a6b2c0;}
+.s5 { color: #98c379;}
+.s6 { color: #abb2bf;}
+.s7 { color: #59626f; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DownloadMultipleSetupView.xaml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;UserControl</span>
+    <span class="s2">x</span><span class="s3">:</span><span class="s2">Class</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">YoutubeDownloader.Views.Dialogs.DownloadMultipleSetupView</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.microsoft.com/winfx/2006/xaml/presentation</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">x</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.microsoft.com/winfx/2006/xaml</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">b</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.microsoft.com/xaml/behaviors</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">behaviors</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">clr-namespace:YoutubeDownloader.Behaviors</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">converters</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">clr-namespace:YoutubeDownloader.Converters</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">d</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.microsoft.com/expression/blend/2008</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">dialogs</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">clr-namespace:YoutubeDownloader.ViewModels.Dialogs</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">materialDesign</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://materialdesigninxaml.net/winfx/xaml/themes</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">mc</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.openxmlformats.org/markup-compatibility/2006</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">s</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">https://github.com/canton7/Stylet</span><span class="s4">&quot;</span>
+    <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">500</span><span class="s4">&quot;</span>
+    <span class="s2">d</span><span class="s3">:</span><span class="s2">DataContext</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{d:DesignInstance Type=dialogs:DownloadMultipleSetupViewModel}</span><span class="s4">&quot;</span>
+    <span class="s2">Loaded</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action OnViewLoaded}</span><span class="s4">&quot;</span>
+    <span class="s2">mc</span><span class="s3">:</span><span class="s2">Ignorable</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">d</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;Grid&gt;</span>
+        <span class="s0">&lt;Grid.RowDefinitions&gt;</span>
+            <span class="s0">&lt;RowDefinition </span><span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;RowDefinition </span><span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">*</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;RowDefinition </span><span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;RowDefinition </span><span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+        <span class="s0">&lt;/Grid.RowDefinitions&gt;</span>
+
+        <span class="s3">&lt;!--  </span><span class="s7">Title  </span><span class="s3">--&gt;</span>
+        <span class="s0">&lt;TextBlock</span>
+            <span class="s2">Grid.Row</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0</span><span class="s4">&quot;</span>
+            <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">16</span><span class="s4">&quot;</span>
+            <span class="s2">FontSize</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">19</span><span class="s4">&quot;</span>
+            <span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Title}</span><span class="s4">&quot;</span>
+            <span class="s2">TextTrimming</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">CharacterEllipsis</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;TextBlock.ContextMenu&gt;</span>
+                <span class="s0">&lt;ContextMenu&gt;</span>
+                    <span class="s0">&lt;MenuItem </span><span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action CopyTitle}</span><span class="s4">&quot; </span><span class="s2">Header</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Copy</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                <span class="s0">&lt;/ContextMenu&gt;</span>
+            <span class="s0">&lt;/TextBlock.ContextMenu&gt;</span>
+        <span class="s0">&lt;/TextBlock&gt;</span>
+
+        <span class="s3">&lt;!--  </span><span class="s7">Videos  </span><span class="s3">--&gt;</span>
+        <span class="s0">&lt;Border</span>
+            <span class="s2">Grid.Row</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">1</span><span class="s4">&quot;</span>
+            <span class="s2">BorderBrush</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignDivider}</span><span class="s4">&quot;</span>
+            <span class="s2">BorderThickness</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0,1</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;ListView</span>
+                <span class="s2">Padding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">8</span><span class="s4">&quot;</span>
+                <span class="s2">HorizontalContentAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Stretch</span><span class="s4">&quot;</span>
+                <span class="s2">ItemsSource</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding AvailableVideos}</span><span class="s4">&quot;</span>
+                <span class="s2">ScrollViewer.CanContentScroll</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">False</span><span class="s4">&quot;</span>
+                <span class="s2">ScrollViewer.HorizontalScrollBarVisibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Disabled</span><span class="s4">&quot;</span>
+                <span class="s2">SelectionMode</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Extended</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;b</span><span class="s4">:</span><span class="s0">Interaction.Behaviors&gt;</span>
+                    <span class="s0">&lt;behaviors</span><span class="s4">:</span><span class="s0">VideoMultiSelectionListBoxBehavior </span><span class="s2">SelectedItems</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding SelectedVideos}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                <span class="s0">&lt;/b</span><span class="s4">:</span><span class="s0">Interaction.Behaviors&gt;</span>
+                <span class="s0">&lt;ListView.ItemContainerStyle&gt;</span>
+                    <span class="s0">&lt;Style </span><span class="s2">BasedOn</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{StaticResource {x:Type ListViewItem}}</span><span class="s4">&quot; </span><span class="s2">TargetType</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Type ListViewItem}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">FocusVisualStyle</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Null}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Padding</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">8,4,8,4</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;/Style&gt;</span>
+                <span class="s0">&lt;/ListView.ItemContainerStyle&gt;</span>
+                <span class="s0">&lt;ListView.ItemTemplate&gt;</span>
+                    <span class="s0">&lt;DataTemplate&gt;</span>
+                        <span class="s0">&lt;Grid </span><span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0,0,0,8</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                            <span class="s0">&lt;Grid.ColumnDefinitions&gt;</span>
+                                <span class="s0">&lt;ColumnDefinition </span><span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                <span class="s0">&lt;ColumnDefinition </span><span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">*</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                <span class="s0">&lt;ColumnDefinition </span><span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                            <span class="s0">&lt;/Grid.ColumnDefinitions&gt;</span>
+
+                            <span class="s3">&lt;!--  </span><span class="s7">Thumbnail  </span><span class="s3">--&gt;</span>
+                            <span class="s0">&lt;Image</span>
+                                <span class="s2">Grid.Column</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0</span><span class="s4">&quot;</span>
+                                <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">48</span><span class="s4">&quot;</span>
+                                <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">48</span><span class="s4">&quot;</span>
+                                <span class="s2">Source</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Converter={x:Static converters:VideoToLowestQualityThumbnailUrlConverter.Instance}}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+
+                            <span class="s3">&lt;!--  </span><span class="s7">Info  </span><span class="s3">--&gt;</span>
+                            <span class="s0">&lt;StackPanel</span>
+                                <span class="s2">Grid.Column</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">1</span><span class="s4">&quot;</span>
+                                <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">8,0,0,0</span><span class="s4">&quot;</span>
+                                <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                <span class="s3">&lt;!--  </span><span class="s7">Title  </span><span class="s3">--&gt;</span>
+                                <span class="s0">&lt;TextBlock</span>
+                                    <span class="s2">FontSize</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">16</span><span class="s4">&quot;</span>
+                                    <span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Title}</span><span class="s4">&quot;</span>
+                                    <span class="s2">TextTrimming</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">CharacterEllipsis</span><span class="s4">&quot;</span>
+                                    <span class="s2">ToolTip</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Title}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+
+                                <span class="s0">&lt;StackPanel </span><span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0,8,0,0</span><span class="s4">&quot; </span><span class="s2">Orientation</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Horizontal</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                    <span class="s3">&lt;!--  </span><span class="s7">Author  </span><span class="s3">--&gt;</span>
+                                    <span class="s0">&lt;StackPanel </span><span class="s2">Orientation</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Horizontal</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                                            <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">16</span><span class="s4">&quot;</span>
+                                            <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">16</span><span class="s4">&quot;</span>
+                                            <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                            <span class="s2">BorderThickness</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">1</span><span class="s4">&quot;</span>
+                                            <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">UserOutline</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                        <span class="s0">&lt;TextBlock</span>
+                                            <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">3,0,0,0</span><span class="s4">&quot;</span>
+                                            <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                            <span class="s2">FontWeight</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Light</span><span class="s4">&quot;</span>
+                                            <span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Author.Title}</span><span class="s4">&quot;</span>
+                                            <span class="s2">TextTrimming</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">CharacterEllipsis</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                    <span class="s0">&lt;/StackPanel&gt;</span>
+
+                                    <span class="s3">&lt;!--  </span><span class="s7">Duration  </span><span class="s3">--&gt;</span>
+                                    <span class="s0">&lt;StackPanel </span><span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">8,0,0,0</span><span class="s4">&quot; </span><span class="s2">Orientation</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Horizontal</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                                            <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">16</span><span class="s4">&quot;</span>
+                                            <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">16</span><span class="s4">&quot;</span>
+                                            <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                            <span class="s2">BorderThickness</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">1</span><span class="s4">&quot;</span>
+                                            <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">ClockOutline</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                        <span class="s0">&lt;TextBlock</span>
+                                            <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">3,0,0,0</span><span class="s4">&quot;</span>
+                                            <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                            <span class="s2">FontWeight</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Light</span><span class="s4">&quot;</span>
+                                            <span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Duration, TargetNullValue=Live}</span><span class="s4">&quot;</span>
+                                            <span class="s2">TextTrimming</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">CharacterEllipsis</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                    <span class="s0">&lt;/StackPanel&gt;</span>
+                                <span class="s0">&lt;/StackPanel&gt;</span>
+                            <span class="s0">&lt;/StackPanel&gt;</span>
+
+                            <span class="s3">&lt;!--  </span><span class="s7">Checkbox  </span><span class="s3">--&gt;</span>
+                            <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                                <span class="s2">Grid.Column</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">2</span><span class="s4">&quot;</span>
+                                <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                                <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                                <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">8,0,0,0</span><span class="s4">&quot;</span>
+                                <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Check</span><span class="s4">&quot;</span>
+                                <span class="s2">Visibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}, Converter={x:Static s:BoolToVisibilityConverter.Instance}, Mode=OneWay}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                        <span class="s0">&lt;/Grid&gt;</span>
+                    <span class="s0">&lt;/DataTemplate&gt;</span>
+                <span class="s0">&lt;/ListView.ItemTemplate&gt;</span>
+            <span class="s0">&lt;/ListView&gt;</span>
+        <span class="s0">&lt;/Border&gt;</span>
+
+        <span class="s3">&lt;!--  </span><span class="s7">Preferences  </span><span class="s3">--&gt;</span>
+        <span class="s0">&lt;DockPanel</span>
+            <span class="s2">Grid.Row</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">2</span><span class="s4">&quot;</span>
+            <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">16</span><span class="s4">&quot;</span>
+            <span class="s2">LastChildFill</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">False</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+            <span class="s3">&lt;!--  </span><span class="s7">Container preference  </span><span class="s3">--&gt;</span>
+            <span class="s0">&lt;StackPanel </span><span class="s2">DockPanel.Dock</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Left</span><span class="s4">&quot; </span><span class="s2">Orientation</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Horizontal</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;TextBlock </span><span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot; </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Container:</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                <span class="s0">&lt;ComboBox</span>
+                    <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">150</span><span class="s4">&quot;</span>
+                    <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">8,0,0,0</span><span class="s4">&quot;</span>
+                    <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                    <span class="s2">IsReadOnly</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">True</span><span class="s4">&quot;</span>
+                    <span class="s2">ItemsSource</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding AvailableContainers}</span><span class="s4">&quot;</span>
+                    <span class="s2">SelectedItem</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding SelectedContainer}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;/StackPanel&gt;</span>
+
+            <span class="s3">&lt;!--  </span><span class="s7">Video quality preference  </span><span class="s3">--&gt;</span>
+            <span class="s0">&lt;StackPanel</span>
+                <span class="s2">DockPanel.Dock</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Right</span><span class="s4">&quot;</span>
+                <span class="s2">IsEnabled</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding SelectedContainer.IsAudioOnly, Converter={x:Static converters:InverseBoolConverter.Instance}}</span><span class="s4">&quot;</span>
+                <span class="s2">Orientation</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Horizontal</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;TextBlock </span><span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot; </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Video quality:</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                <span class="s0">&lt;ComboBox</span>
+                    <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">150</span><span class="s4">&quot;</span>
+                    <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">8,0,0,0</span><span class="s4">&quot;</span>
+                    <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                    <span class="s2">IsReadOnly</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">True</span><span class="s4">&quot;</span>
+                    <span class="s2">ItemsSource</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding AvailableVideoQualityPreferences}</span><span class="s4">&quot;</span>
+                    <span class="s2">SelectedItem</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding SelectedVideoQualityPreference}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;ComboBox.ItemTemplate&gt;</span>
+                        <span class="s0">&lt;DataTemplate&gt;</span>
+                            <span class="s0">&lt;TextBlock </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Converter={x:Static converters:VideoQualityPreferenceToStringConverter.Instance}}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                        <span class="s0">&lt;/DataTemplate&gt;</span>
+                    <span class="s0">&lt;/ComboBox.ItemTemplate&gt;</span>
+                <span class="s0">&lt;/ComboBox&gt;</span>
+            <span class="s0">&lt;/StackPanel&gt;</span>
+        <span class="s0">&lt;/DockPanel&gt;</span>
+
+        <span class="s3">&lt;!--  </span><span class="s7">Buttons  </span><span class="s3">--&gt;</span>
+        <span class="s0">&lt;StackPanel</span>
+            <span class="s2">Grid.Row</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">3</span><span class="s4">&quot;</span>
+            <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">16</span><span class="s4">&quot;</span>
+            <span class="s2">HorizontalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Right</span><span class="s4">&quot;</span>
+            <span class="s2">Orientation</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Horizontal</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+            <span class="s3">&lt;!--  </span><span class="s7">Download  </span><span class="s3">--&gt;</span>
+            <span class="s0">&lt;Button</span>
+                <span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action Confirm}</span><span class="s4">&quot;</span>
+                <span class="s2">IsDefault</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">True</span><span class="s4">&quot;</span>
+                <span class="s2">Style</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignOutlinedButton}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;Button.Content&gt;</span>
+                    <span class="s0">&lt;TextBlock&gt;</span>
+                        <span class="s0">&lt;Run </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">DOWNLOAD</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                        <span class="s0">&lt;Run </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">(</span><span class="s4">&quot; </span><span class="s0">/&gt;&lt;Run </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding SelectedVideos.Count, FallbackValue=0, Mode=OneWay}</span><span class="s4">&quot; </span><span class="s0">/&gt;&lt;Run </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">)</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;/TextBlock&gt;</span>
+                <span class="s0">&lt;/Button.Content&gt;</span>
+            <span class="s0">&lt;/Button&gt;</span>
+
+            <span class="s3">&lt;!--  </span><span class="s7">Cancel  </span><span class="s3">--&gt;</span>
+            <span class="s0">&lt;Button</span>
+                <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">8,0,0,0</span><span class="s4">&quot;</span>
+                <span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action Close}</span><span class="s4">&quot;</span>
+                <span class="s2">Content</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">CANCEL</span><span class="s4">&quot;</span>
+                <span class="s2">IsCancel</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">True</span><span class="s4">&quot;</span>
+                <span class="s2">Style</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignOutlinedButton}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+        <span class="s0">&lt;/StackPanel&gt;</span>
+    <span class="s0">&lt;/Grid&gt;</span>
+<span class="s0">&lt;/UserControl&gt;</span></pre>
+</body>
+</html>

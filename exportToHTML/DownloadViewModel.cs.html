@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>DownloadViewModel.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c679dd; font-style: italic;}
+.s1 { color: #abb2bf;}
+.s2 { color: #d19a66;}
+.s3 { color: #59626f; font-style: italic;}
+.s4 { color: #98c379;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DownloadViewModel.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">System;</span>
+<span class="s0">using </span><span class="s1">System.IO;</span>
+<span class="s0">using </span><span class="s1">System.Threading;</span>
+<span class="s0">using </span><span class="s1">Gress;</span>
+<span class="s0">using </span><span class="s1">Stylet;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.Core.Downloading;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.Utils;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.ViewModels.Dialogs;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.ViewModels.Framework;</span>
+<span class="s0">using </span><span class="s1">YoutubeExplode.Videos;</span>
+
+<span class="s0">namespace </span><span class="s1">YoutubeDownloader.ViewModels.Components;</span>
+
+<span class="s0">public class </span><span class="s1">DownloadViewModel : PropertyChangedBase, IDisposable</span>
+<span class="s1">{</span>
+    <span class="s0">private readonly </span><span class="s1">IViewModelFactory _viewModelFactory;</span>
+    <span class="s0">private readonly </span><span class="s1">DialogManager _dialogManager;</span>
+
+    <span class="s0">private readonly </span><span class="s1">CancellationTokenSource _cancellationTokenSource = </span><span class="s0">new</span><span class="s1">();</span>
+
+    <span class="s0">public </span><span class="s1">IVideo? Video { get; set; }</span>
+
+    <span class="s0">public </span><span class="s1">VideoDownloadOption? DownloadOption { get; set; }</span>
+
+    <span class="s0">public </span><span class="s1">VideoDownloadPreference? DownloadPreference { get; set; }</span>
+
+    <span class="s0">public string</span><span class="s1">? FilePath { get; set; }</span>
+
+    <span class="s0">public string</span><span class="s1">? FileName =&gt; Path.GetFileName(FilePath);</span>
+
+    <span class="s0">public </span><span class="s1">ProgressContainer&lt;Percentage&gt; Progress { get; } = </span><span class="s0">new</span><span class="s1">();</span>
+
+    <span class="s0">public bool </span><span class="s1">IsProgressIndeterminate =&gt; Progress.Current.Fraction </span><span class="s0">is </span><span class="s1">&lt;= </span><span class="s2">0 </span><span class="s1">or &gt;= </span><span class="s2">1</span><span class="s1">;</span>
+
+    <span class="s0">public </span><span class="s1">CancellationToken CancellationToken =&gt; _cancellationTokenSource.Token;</span>
+
+    <span class="s0">public </span><span class="s1">DownloadStatus Status { get; set; } = DownloadStatus.Enqueued;</span>
+
+    <span class="s0">public bool </span><span class="s1">IsCanceledOrFailed =&gt; Status </span><span class="s0">is </span><span class="s1">DownloadStatus.Canceled or DownloadStatus.Failed;</span>
+
+    <span class="s0">public string</span><span class="s1">? ErrorMessage { get; set; }</span>
+
+    <span class="s0">public </span><span class="s1">DownloadViewModel(IViewModelFactory viewModelFactory, DialogManager dialogManager)</span>
+    <span class="s1">{</span>
+        <span class="s1">_viewModelFactory = viewModelFactory;</span>
+        <span class="s1">_dialogManager = dialogManager;</span>
+
+        <span class="s1">Progress.Bind(o =&gt; o.Current, (_, _) =&gt; NotifyOfPropertyChange(() =&gt; IsProgressIndeterminate));</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public bool </span><span class="s1">CanCancel =&gt; Status </span><span class="s0">is </span><span class="s1">DownloadStatus.Enqueued or DownloadStatus.Started;</span>
+
+    <span class="s0">public void </span><span class="s1">Cancel()</span>
+    <span class="s1">{</span>
+        <span class="s0">if </span><span class="s1">(!CanCancel)</span>
+            <span class="s0">return</span><span class="s1">;</span>
+
+        <span class="s1">_cancellationTokenSource.Cancel();</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public bool </span><span class="s1">CanShowFile =&gt; Status == DownloadStatus.Completed;</span>
+
+    <span class="s0">public </span><span class="s1">async </span><span class="s0">void </span><span class="s1">ShowFile()</span>
+    <span class="s1">{</span>
+        <span class="s0">if </span><span class="s1">(!CanShowFile)</span>
+            <span class="s0">return</span><span class="s1">;</span>
+
+        <span class="s0">try</span>
+        <span class="s1">{</span>
+            <span class="s3">// Navigate to the file in Windows Explorer</span>
+            <span class="s1">ProcessEx.Start(</span><span class="s4">&quot;explorer&quot;</span><span class="s1">, </span><span class="s0">new</span><span class="s1">[] { </span><span class="s4">&quot;/select,&quot;</span><span class="s1">, FilePath! });</span>
+        <span class="s1">}</span>
+        <span class="s0">catch </span><span class="s1">(Exception ex)</span>
+        <span class="s1">{</span>
+            <span class="s1">await _dialogManager.ShowDialogAsync(</span>
+                <span class="s1">_viewModelFactory.CreateMessageBoxViewModel(</span><span class="s4">&quot;Error&quot;</span><span class="s1">, ex.Message)</span>
+            <span class="s1">);</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public bool </span><span class="s1">CanOpenFile =&gt; Status == DownloadStatus.Completed;</span>
+
+    <span class="s0">public </span><span class="s1">async </span><span class="s0">void </span><span class="s1">OpenFile()</span>
+    <span class="s1">{</span>
+        <span class="s0">if </span><span class="s1">(!CanOpenFile)</span>
+            <span class="s0">return</span><span class="s1">;</span>
+
+        <span class="s0">try</span>
+        <span class="s1">{</span>
+            <span class="s1">ProcessEx.StartShellExecute(FilePath!);</span>
+        <span class="s1">}</span>
+        <span class="s0">catch </span><span class="s1">(Exception ex)</span>
+        <span class="s1">{</span>
+            <span class="s1">await _dialogManager.ShowDialogAsync(</span>
+                <span class="s1">_viewModelFactory.CreateMessageBoxViewModel(</span><span class="s4">&quot;Error&quot;</span><span class="s1">, ex.Message)</span>
+            <span class="s1">);</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">Dispose() =&gt; _cancellationTokenSource.Dispose();</span>
+<span class="s1">}</span>
+
+<span class="s0">public static class </span><span class="s1">DownloadViewModelExtensions</span>
+<span class="s1">{</span>
+    <span class="s0">public static </span><span class="s1">DownloadViewModel CreateDownloadViewModel(</span>
+        <span class="s0">this </span><span class="s1">IViewModelFactory factory,</span>
+        <span class="s1">IVideo video,</span>
+        <span class="s1">VideoDownloadOption downloadOption,</span>
+        <span class="s0">string </span><span class="s1">filePath)</span>
+    <span class="s1">{</span>
+        <span class="s1">var viewModel = factory.CreateDownloadViewModel();</span>
+
+        <span class="s1">viewModel.Video = video;</span>
+        <span class="s1">viewModel.DownloadOption = downloadOption;</span>
+        <span class="s1">viewModel.FilePath = filePath;</span>
+
+        <span class="s0">return </span><span class="s1">viewModel;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public static </span><span class="s1">DownloadViewModel CreateDownloadViewModel(</span>
+        <span class="s0">this </span><span class="s1">IViewModelFactory factory,</span>
+        <span class="s1">IVideo video,</span>
+        <span class="s1">VideoDownloadPreference downloadPreference,</span>
+        <span class="s0">string </span><span class="s1">filePath)</span>
+    <span class="s1">{</span>
+        <span class="s1">var viewModel = factory.CreateDownloadViewModel();</span>
+
+        <span class="s1">viewModel.Video = video;</span>
+        <span class="s1">viewModel.DownloadPreference = downloadPreference;</span>
+        <span class="s1">viewModel.FilePath = filePath;</span>
+
+        <span class="s0">return </span><span class="s1">viewModel;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

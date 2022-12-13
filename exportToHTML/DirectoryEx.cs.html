@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>DirectoryEx.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c679dd; font-style: italic;}
+.s1 { color: #abb2bf;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DirectoryEx.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">System.IO;</span>
+
+<span class="s0">namespace </span><span class="s1">YoutubeDownloader.Utils;</span>
+
+<span class="s0">internal static class </span><span class="s1">DirectoryEx</span>
+<span class="s1">{</span>
+    <span class="s0">public static void </span><span class="s1">CreateDirectoryForFile(</span><span class="s0">string </span><span class="s1">filePath)</span>
+    <span class="s1">{</span>
+        <span class="s1">var dirPath = Path.GetDirectoryName(filePath);</span>
+        <span class="s0">if </span><span class="s1">(</span><span class="s0">string</span><span class="s1">.IsNullOrWhiteSpace(dirPath))</span>
+            <span class="s0">return</span><span class="s1">;</span>
+
+        <span class="s1">Directory.CreateDirectory(dirPath);</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

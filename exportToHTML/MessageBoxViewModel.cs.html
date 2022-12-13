@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>MessageBoxViewModel.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c679dd; font-style: italic;}
+.s1 { color: #abb2bf;}
+.s2 { color: #d19a66;}
+.s3 { color: #98c379;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MessageBoxViewModel.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">YoutubeDownloader.ViewModels.Framework;</span>
+
+<span class="s0">namespace </span><span class="s1">YoutubeDownloader.ViewModels.Dialogs;</span>
+
+<span class="s0">public class </span><span class="s1">MessageBoxViewModel : DialogScreen</span>
+<span class="s1">{</span>
+    <span class="s0">public string</span><span class="s1">? Title { get; set; }</span>
+
+    <span class="s0">public string</span><span class="s1">? Message { get; set; }</span>
+
+    <span class="s0">public bool </span><span class="s1">IsOkButtonVisible { get; set; } = </span><span class="s0">true</span><span class="s1">;</span>
+
+    <span class="s0">public string</span><span class="s1">? OkButtonText { get; set; }</span>
+
+    <span class="s0">public bool </span><span class="s1">IsCancelButtonVisible { get; set; }</span>
+
+    <span class="s0">public string</span><span class="s1">? CancelButtonText { get; set; }</span>
+
+    <span class="s0">public int </span><span class="s1">ButtonsCount =&gt;</span>
+        <span class="s1">(IsOkButtonVisible ? </span><span class="s2">1 </span><span class="s1">: </span><span class="s2">0</span><span class="s1">) +</span>
+        <span class="s1">(IsCancelButtonVisible ? </span><span class="s2">1 </span><span class="s1">: </span><span class="s2">0</span><span class="s1">);</span>
+<span class="s1">}</span>
+
+<span class="s0">public static class </span><span class="s1">MessageBoxViewModelExtensions</span>
+<span class="s1">{</span>
+    <span class="s0">public static </span><span class="s1">MessageBoxViewModel CreateMessageBoxViewModel(</span>
+        <span class="s0">this </span><span class="s1">IViewModelFactory factory,</span>
+        <span class="s0">string </span><span class="s1">title, </span><span class="s0">string </span><span class="s1">message,</span>
+        <span class="s0">string</span><span class="s1">? okButtonText, </span><span class="s0">string</span><span class="s1">? cancelButtonText)</span>
+    <span class="s1">{</span>
+        <span class="s1">var viewModel = factory.CreateMessageBoxViewModel();</span>
+        <span class="s1">viewModel.Title = title;</span>
+        <span class="s1">viewModel.Message = message;</span>
+
+        <span class="s1">viewModel.IsOkButtonVisible = !</span><span class="s0">string</span><span class="s1">.IsNullOrWhiteSpace(okButtonText);</span>
+        <span class="s1">viewModel.OkButtonText = okButtonText;</span>
+        <span class="s1">viewModel.IsCancelButtonVisible = !</span><span class="s0">string</span><span class="s1">.IsNullOrWhiteSpace(cancelButtonText);</span>
+        <span class="s1">viewModel.CancelButtonText = cancelButtonText;</span>
+
+        <span class="s0">return </span><span class="s1">viewModel;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public static </span><span class="s1">MessageBoxViewModel CreateMessageBoxViewModel(</span>
+        <span class="s0">this </span><span class="s1">IViewModelFactory factory,</span>
+        <span class="s0">string </span><span class="s1">title, </span><span class="s0">string </span><span class="s1">message) =&gt;</span>
+        <span class="s1">factory.CreateMessageBoxViewModel(title, message, </span><span class="s3">&quot;CLOSE&quot;</span><span class="s1">, </span><span class="s0">null</span><span class="s1">);</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

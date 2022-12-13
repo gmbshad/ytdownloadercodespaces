@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>DialogManager.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c679dd; font-style: italic;}
+.s1 { color: #abb2bf;}
+.s2 { color: #d19a66;}
+.s3 { color: #98c379;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DialogManager.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">System;</span>
+<span class="s0">using </span><span class="s1">System.IO;</span>
+<span class="s0">using </span><span class="s1">System.Threading;</span>
+<span class="s0">using </span><span class="s1">System.Threading.Tasks;</span>
+<span class="s0">using </span><span class="s1">MaterialDesignThemes.Wpf;</span>
+<span class="s0">using </span><span class="s1">Ookii.Dialogs.Wpf;</span>
+<span class="s0">using </span><span class="s1">Stylet;</span>
+
+<span class="s0">namespace </span><span class="s1">YoutubeDownloader.ViewModels.Framework;</span>
+
+<span class="s0">public class </span><span class="s1">DialogManager : IDisposable</span>
+<span class="s1">{</span>
+    <span class="s0">private readonly </span><span class="s1">IViewManager _viewManager;</span>
+    <span class="s0">private readonly </span><span class="s1">SemaphoreSlim _dialogLock = </span><span class="s0">new</span><span class="s1">(</span><span class="s2">1</span><span class="s1">, </span><span class="s2">1</span><span class="s1">);</span>
+
+    <span class="s0">public </span><span class="s1">DialogManager(IViewManager viewManager)</span>
+    <span class="s1">{</span>
+        <span class="s1">_viewManager = viewManager;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public </span><span class="s1">async ValueTask&lt;T?&gt; ShowDialogAsync&lt;T&gt;(DialogScreen&lt;T&gt; dialogScreen)</span>
+    <span class="s1">{</span>
+        <span class="s1">var view = _viewManager.CreateAndBindViewForModelIfNecessary(dialogScreen);</span>
+
+        <span class="s0">void </span><span class="s1">OnDialogOpened(</span><span class="s0">object</span><span class="s1">? openSender, DialogOpenedEventArgs openArgs)</span>
+        <span class="s1">{</span>
+            <span class="s0">void </span><span class="s1">OnScreenClosed(</span><span class="s0">object</span><span class="s1">? closeSender, EventArgs closeArgs)</span>
+            <span class="s1">{</span>
+                <span class="s1">openArgs.Session.Close();</span>
+                <span class="s1">dialogScreen.Closed -= OnScreenClosed;</span>
+            <span class="s1">}</span>
+            <span class="s1">dialogScreen.Closed += OnScreenClosed;</span>
+        <span class="s1">}</span>
+
+        <span class="s1">await _dialogLock.WaitAsync();</span>
+        <span class="s0">try</span>
+        <span class="s1">{</span>
+            <span class="s1">await DialogHost.Show(view, OnDialogOpened);</span>
+            <span class="s0">return </span><span class="s1">dialogScreen.DialogResult;</span>
+        <span class="s1">}</span>
+        <span class="s0">finally</span>
+        <span class="s1">{</span>
+            <span class="s1">_dialogLock.Release();</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public string</span><span class="s1">? PromptSaveFilePath(</span><span class="s0">string </span><span class="s1">filter = </span><span class="s3">&quot;All files|*.*&quot;</span><span class="s1">, </span><span class="s0">string </span><span class="s1">defaultFilePath = </span><span class="s3">&quot;&quot;</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s1">var dialog = </span><span class="s0">new </span><span class="s1">VistaSaveFileDialog</span>
+        <span class="s1">{</span>
+            <span class="s1">Filter = filter,</span>
+            <span class="s1">AddExtension = </span><span class="s0">true</span><span class="s1">,</span>
+            <span class="s1">FileName = defaultFilePath,</span>
+            <span class="s1">DefaultExt = Path.GetExtension(defaultFilePath)</span>
+        <span class="s1">};</span>
+
+        <span class="s0">return </span><span class="s1">dialog.ShowDialog() == </span><span class="s0">true </span><span class="s1">? dialog.FileName : </span><span class="s0">null</span><span class="s1">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public string</span><span class="s1">? PromptDirectoryPath(</span><span class="s0">string </span><span class="s1">defaultDirPath = </span><span class="s3">&quot;&quot;</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s1">var dialog = </span><span class="s0">new </span><span class="s1">VistaFolderBrowserDialog</span>
+        <span class="s1">{</span>
+            <span class="s1">SelectedPath = defaultDirPath</span>
+        <span class="s1">};</span>
+
+        <span class="s0">return </span><span class="s1">dialog.ShowDialog() == </span><span class="s0">true </span><span class="s1">? dialog.SelectedPath : </span><span class="s0">null</span><span class="s1">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">Dispose()</span>
+    <span class="s1">{</span>
+        <span class="s1">_dialogLock.Dispose();</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>FileEx.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c679dd; font-style: italic;}
+.s1 { color: #abb2bf;}
+.s2 { color: #d19a66;}
+.s3 { color: #98c379;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+FileEx.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">System.IO;</span>
+
+<span class="s0">namespace </span><span class="s1">YoutubeDownloader.Utils;</span>
+
+<span class="s0">internal static class </span><span class="s1">PathEx</span>
+<span class="s1">{</span>
+    <span class="s0">public static string </span><span class="s1">EnsureUniquePath(</span><span class="s0">string </span><span class="s1">baseFilePath, </span><span class="s0">int </span><span class="s1">maxRetries = </span><span class="s2">100</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s0">if </span><span class="s1">(!File.Exists(baseFilePath))</span>
+            <span class="s0">return </span><span class="s1">baseFilePath;</span>
+
+        <span class="s1">var baseDirPath = Path.GetDirectoryName(baseFilePath);</span>
+        <span class="s1">var baseFileNameWithoutExtension = Path.GetFileNameWithoutExtension(baseFilePath);</span>
+        <span class="s1">var baseFileExtension = Path.GetExtension(baseFilePath);</span>
+
+        <span class="s0">for </span><span class="s1">(var i = </span><span class="s2">1</span><span class="s1">; i &lt;= maxRetries; i++)</span>
+        <span class="s1">{</span>
+            <span class="s1">var fileName = $</span><span class="s3">&quot;{baseFileNameWithoutExtension} ({i}){baseFileExtension}&quot;</span><span class="s1">;</span>
+            <span class="s1">var filePath = !</span><span class="s0">string</span><span class="s1">.IsNullOrWhiteSpace(baseDirPath)</span>
+                <span class="s1">? Path.Combine(baseDirPath, fileName)</span>
+                <span class="s1">: fileName;</span>
+
+            <span class="s0">if </span><span class="s1">(!File.Exists(filePath))</span>
+                <span class="s0">return </span><span class="s1">filePath;</span>
+        <span class="s1">}</span>
+
+        <span class="s0">return </span><span class="s1">baseFilePath;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

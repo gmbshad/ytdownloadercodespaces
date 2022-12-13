@@ -1,0 +1,392 @@
+<html>
+<head>
+<title>DashboardView.xaml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #f07178;}
+.s1 { color: #61aeef;}
+.s2 { color: #e5c17c; font-style: italic;}
+.s3 { color: #a6b2c0; font-style: italic;}
+.s4 { color: #a6b2c0;}
+.s5 { color: #98c379;}
+.s6 { color: #abb2bf;}
+.s7 { color: #59626f; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DashboardView.xaml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;UserControl</span>
+    <span class="s2">x</span><span class="s3">:</span><span class="s2">Class</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">YoutubeDownloader.Views.Components.DashboardView</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.microsoft.com/winfx/2006/xaml/presentation</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">x</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.microsoft.com/winfx/2006/xaml</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">components</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">clr-namespace:YoutubeDownloader.ViewModels.Components</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">converters</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">clr-namespace:YoutubeDownloader.Converters</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">d</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.microsoft.com/expression/blend/2008</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">materialDesign</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://materialdesigninxaml.net/winfx/xaml/themes</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">mc</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">http://schemas.openxmlformats.org/markup-compatibility/2006</span><span class="s4">&quot;</span>
+    <span class="s2">xmlns</span><span class="s3">:</span><span class="s2">s</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">https://github.com/canton7/Stylet</span><span class="s4">&quot;</span>
+    <span class="s2">d</span><span class="s3">:</span><span class="s2">DataContext</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{d:DesignInstance Type=components:DashboardViewModel}</span><span class="s4">&quot;</span>
+    <span class="s2">FocusManager.FocusedElement</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding ElementName=QueryTextBox}</span><span class="s4">&quot;</span>
+    <span class="s2">mc</span><span class="s3">:</span><span class="s2">Ignorable</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">d</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;Grid&gt;</span>
+        <span class="s0">&lt;Grid.RowDefinitions&gt;</span>
+            <span class="s0">&lt;RowDefinition </span><span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;RowDefinition </span><span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;RowDefinition </span><span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">*</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+        <span class="s0">&lt;/Grid.RowDefinitions&gt;</span>
+
+        <span class="s3">&lt;!--  </span><span class="s7">Toolbar  </span><span class="s3">--&gt;</span>
+        <span class="s0">&lt;Grid </span><span class="s2">Grid.Row</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0</span><span class="s4">&quot; </span><span class="s2">Background</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignDarkBackground}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;Grid.ColumnDefinitions&gt;</span>
+                <span class="s0">&lt;ColumnDefinition </span><span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">*</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                <span class="s0">&lt;ColumnDefinition </span><span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;/Grid.ColumnDefinitions&gt;</span>
+
+            <span class="s3">&lt;!--  </span><span class="s7">Query and process query button  </span><span class="s3">--&gt;</span>
+            <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">Card </span><span class="s2">Grid.Column</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0</span><span class="s4">&quot; </span><span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">12,12,0,12</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;Grid&gt;</span>
+                    <span class="s0">&lt;Grid.ColumnDefinitions&gt;</span>
+                        <span class="s0">&lt;ColumnDefinition </span><span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                        <span class="s0">&lt;ColumnDefinition </span><span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">*</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                        <span class="s0">&lt;ColumnDefinition </span><span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;/Grid.ColumnDefinitions&gt;</span>
+
+                    <span class="s3">&lt;!--  </span><span class="s7">Search icon  </span><span class="s3">--&gt;</span>
+                    <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                        <span class="s2">Grid.Column</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0</span><span class="s4">&quot;</span>
+                        <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                        <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                        <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">8</span><span class="s4">&quot;</span>
+                        <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                        <span class="s2">Foreground</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource PrimaryHueMidBrush}</span><span class="s4">&quot;</span>
+                        <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Search</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+
+                    <span class="s3">&lt;!--  </span><span class="s7">Query  </span><span class="s3">--&gt;</span>
+                    <span class="s0">&lt;TextBox</span>
+                        <span class="s2">x</span><span class="s3">:</span><span class="s2">Name</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">QueryTextBox</span><span class="s4">&quot;</span>
+                        <span class="s2">Grid.Column</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">1</span><span class="s4">&quot;</span>
+                        <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0,6,6,8</span><span class="s4">&quot;</span>
+                        <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Bottom</span><span class="s4">&quot;</span>
+                        <span class="s2">materialDesign</span><span class="s3">:</span><span class="s2">HintAssist.Hint</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">URL or search query</span><span class="s4">&quot;</span>
+                        <span class="s2">materialDesign</span><span class="s3">:</span><span class="s2">TextFieldAssist.DecorationVisibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Hidden</span><span class="s4">&quot;</span>
+                        <span class="s2">AcceptsReturn</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">True</span><span class="s4">&quot;</span>
+                        <span class="s2">BorderThickness</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0</span><span class="s4">&quot;</span>
+                        <span class="s2">FontSize</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">16</span><span class="s4">&quot;</span>
+                        <span class="s2">MaxLines</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">4</span><span class="s4">&quot;</span>
+                        <span class="s2">PreviewKeyDown</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">QueryTextBox_OnPreviewKeyDown</span><span class="s4">&quot;</span>
+                        <span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Query, UpdateSourceTrigger=PropertyChanged}</span><span class="s4">&quot;</span>
+                        <span class="s2">VerticalScrollBarVisibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+
+                    <span class="s3">&lt;!--  </span><span class="s7">Process query button  </span><span class="s3">--&gt;</span>
+                    <span class="s0">&lt;Button</span>
+                        <span class="s2">Grid.Column</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">2</span><span class="s4">&quot;</span>
+                        <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0,6,6,6</span><span class="s4">&quot;</span>
+                        <span class="s2">Padding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">4</span><span class="s4">&quot;</span>
+                        <span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action ProcessQuery}</span><span class="s4">&quot;</span>
+                        <span class="s2">IsDefault</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">True</span><span class="s4">&quot;</span>
+                        <span class="s2">Style</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignFlatButton}</span><span class="s4">&quot;</span>
+                        <span class="s2">ToolTip</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Process query (Enter)</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                            <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                            <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                            <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">ArrowRight</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;/Button&gt;</span>
+                <span class="s0">&lt;/Grid&gt;</span>
+            <span class="s0">&lt;/materialDesign</span><span class="s4">:</span><span class="s0">Card&gt;</span>
+
+            <span class="s3">&lt;!--  </span><span class="s7">Settings button  </span><span class="s3">--&gt;</span>
+            <span class="s0">&lt;Button</span>
+                <span class="s2">Grid.Column</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">1</span><span class="s4">&quot;</span>
+                <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">6</span><span class="s4">&quot;</span>
+                <span class="s2">Padding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">4</span><span class="s4">&quot;</span>
+                <span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action ShowSettings}</span><span class="s4">&quot;</span>
+                <span class="s2">Foreground</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignDarkForeground}</span><span class="s4">&quot;</span>
+                <span class="s2">Style</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignFlatButton}</span><span class="s4">&quot;</span>
+                <span class="s2">ToolTip</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Settings</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;Button.Resources&gt;</span>
+                    <span class="s0">&lt;SolidColorBrush </span><span class="s2">x</span><span class="s3">:</span><span class="s2">Key</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">MaterialDesignFlatButtonClick</span><span class="s4">&quot; </span><span class="s2">Color</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">#4C4C4C</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                <span class="s0">&lt;/Button.Resources&gt;</span>
+                <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                    <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                    <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                    <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Settings</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;/Button&gt;</span>
+        <span class="s0">&lt;/Grid&gt;</span>
+
+        <span class="s3">&lt;!--  </span><span class="s7">Progress  </span><span class="s3">--&gt;</span>
+        <span class="s0">&lt;ProgressBar</span>
+            <span class="s2">Grid.Row</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">1</span><span class="s4">&quot;</span>
+            <span class="s2">Background</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignDarkBackground}</span><span class="s4">&quot;</span>
+            <span class="s2">IsIndeterminate</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding IsProgressIndeterminate}</span><span class="s4">&quot;</span>
+            <span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Progress.Current.Fraction, Mode=OneWay}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+
+        <span class="s3">&lt;!--  </span><span class="s7">Content  </span><span class="s3">--&gt;</span>
+        <span class="s0">&lt;Grid </span><span class="s2">Grid.Row</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">2</span><span class="s4">&quot; </span><span class="s2">Background</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignCardBackground}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+            <span class="s3">&lt;!--  </span><span class="s7">Placeholder  </span><span class="s3">--&gt;</span>
+            <span class="s0">&lt;StackPanel</span>
+                <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">8,32,8,8</span><span class="s4">&quot;</span>
+                <span class="s2">HorizontalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                <span class="s2">Visibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Downloads.Count, Converter={x:Static s:BoolToVisibilityConverter.InverseInstance}}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                    <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">258</span><span class="s4">&quot;</span>
+                    <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">258</span><span class="s4">&quot;</span>
+                    <span class="s2">HorizontalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                    <span class="s2">Foreground</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignDivider}</span><span class="s4">&quot;</span>
+                    <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Youtube</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+
+                <span class="s0">&lt;TextBlock</span>
+                    <span class="s2">HorizontalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                    <span class="s2">FontSize</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">18</span><span class="s4">&quot;</span>
+                    <span class="s2">FontWeight</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Light</span><span class="s4">&quot;</span>
+                    <span class="s2">TextAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                    <span class="s2">TextWrapping</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Wrap</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                    <span class="s0">&lt;Run </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Copy-paste a</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;Run </span><span class="s2">FontWeight</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">SemiBold</span><span class="s4">&quot; </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">URL</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;Run </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">or enter a</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;Run </span><span class="s2">FontWeight</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">SemiBold</span><span class="s4">&quot; </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">search query</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;Run </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">to start downloading</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;LineBreak /&gt;</span>
+                    <span class="s0">&lt;Run </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Press</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;Run </span><span class="s2">FontWeight</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">SemiBold</span><span class="s4">&quot; </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Shift+Enter</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;Run </span><span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">to add multiple items</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                <span class="s0">&lt;/TextBlock&gt;</span>
+            <span class="s0">&lt;/StackPanel&gt;</span>
+
+            <span class="s3">&lt;!--  </span><span class="s7">Downloads  </span><span class="s3">--&gt;</span>
+            <span class="s0">&lt;DataGrid</span>
+                <span class="s2">Background</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignCardBackground}</span><span class="s4">&quot;</span>
+                <span class="s2">ColumnWidth</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot;</span>
+                <span class="s2">HorizontalScrollBarVisibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Disabled</span><span class="s4">&quot;</span>
+                <span class="s2">ItemsSource</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Downloads}</span><span class="s4">&quot;</span>
+                <span class="s2">ScrollViewer.CanContentScroll</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">False</span><span class="s4">&quot;</span>
+                <span class="s2">VerticalScrollBarVisibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot;</span>
+                <span class="s2">Visibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Downloads.Count, Converter={x:Static s:BoolToVisibilityConverter.Instance}}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                <span class="s0">&lt;DataGrid.ContextMenu&gt;</span>
+                    <span class="s0">&lt;ContextMenu&gt;</span>
+                        <span class="s0">&lt;MenuItem </span><span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action RemoveSuccessfulDownloads}</span><span class="s4">&quot; </span><span class="s2">Header</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Remove successful downloads</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                        <span class="s0">&lt;MenuItem </span><span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action RemoveInactiveDownloads}</span><span class="s4">&quot; </span><span class="s2">Header</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Remove inactive downloads</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                        <span class="s0">&lt;Separator /&gt;</span>
+                        <span class="s0">&lt;MenuItem </span><span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action RestartFailedDownloads}</span><span class="s4">&quot; </span><span class="s2">Header</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Restart failed downloads</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                        <span class="s0">&lt;Separator /&gt;</span>
+                        <span class="s0">&lt;MenuItem </span><span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action CancelAllDownloads}</span><span class="s4">&quot; </span><span class="s2">Header</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Cancel all downloads</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                    <span class="s0">&lt;/ContextMenu&gt;</span>
+                <span class="s0">&lt;/DataGrid.ContextMenu&gt;</span>
+                <span class="s0">&lt;DataGrid.RowStyle&gt;</span>
+                    <span class="s0">&lt;Style </span><span class="s2">BasedOn</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{StaticResource {x:Type DataGridRow}}</span><span class="s4">&quot; </span><span class="s2">TargetType</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Type DataGridRow}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                        <span class="s3">&lt;!--  </span><span class="s7">Triggers  </span><span class="s3">--&gt;</span>
+                        <span class="s0">&lt;Style.Triggers&gt;</span>
+                            <span class="s0">&lt;Trigger </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">IsSelected</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">True</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Background</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Null}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">BorderBrush</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Null}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                            <span class="s0">&lt;/Trigger&gt;</span>
+                            <span class="s0">&lt;Trigger </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">IsMouseOver</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">True</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Background</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Null}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">BorderBrush</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Null}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                            <span class="s0">&lt;/Trigger&gt;</span>
+                        <span class="s0">&lt;/Style.Triggers&gt;</span>
+                    <span class="s0">&lt;/Style&gt;</span>
+                <span class="s0">&lt;/DataGrid.RowStyle&gt;</span>
+
+                <span class="s3">&lt;!--  </span><span class="s7">Columns  </span><span class="s3">--&gt;</span>
+                <span class="s0">&lt;DataGrid.Columns&gt;</span>
+                    <span class="s3">&lt;!--  </span><span class="s7">Thumbnail  </span><span class="s3">--&gt;</span>
+                    <span class="s0">&lt;DataGridTemplateColumn&gt;</span>
+                        <span class="s0">&lt;DataGridTemplateColumn.CellTemplate&gt;</span>
+                            <span class="s0">&lt;DataTemplate </span><span class="s2">DataType</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Type components:DownloadViewModel}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;Image</span>
+                                    <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">48</span><span class="s4">&quot;</span>
+                                    <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">48</span><span class="s4">&quot;</span>
+                                    <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                    <span class="s2">Source</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Video, Converter={x:Static converters:VideoToLowestQualityThumbnailUrlConverter.Instance}}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                            <span class="s0">&lt;/DataTemplate&gt;</span>
+                        <span class="s0">&lt;/DataGridTemplateColumn.CellTemplate&gt;</span>
+                    <span class="s0">&lt;/DataGridTemplateColumn&gt;</span>
+
+                    <span class="s3">&lt;!--  </span><span class="s7">File name  </span><span class="s3">--&gt;</span>
+                    <span class="s0">&lt;DataGridTemplateColumn</span>
+                        <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">*</span><span class="s4">&quot;</span>
+                        <span class="s2">Header</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">File</span><span class="s4">&quot;</span>
+                        <span class="s2">SortMemberPath</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">FileName</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;DataGridTemplateColumn.CellTemplate&gt;</span>
+                            <span class="s0">&lt;DataTemplate </span><span class="s2">DataType</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Type components:DownloadViewModel}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;TextBlock</span>
+                                    <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                    <span class="s2">FontSize</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">14</span><span class="s4">&quot;</span>
+                                    <span class="s2">Foreground</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignBody}</span><span class="s4">&quot;</span>
+                                    <span class="s2">Text</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding FileName}</span><span class="s4">&quot;</span>
+                                    <span class="s2">TextTrimming</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">CharacterEllipsis</span><span class="s4">&quot;</span>
+                                    <span class="s2">ToolTip</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding FileName}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                            <span class="s0">&lt;/DataTemplate&gt;</span>
+                        <span class="s0">&lt;/DataGridTemplateColumn.CellTemplate&gt;</span>
+                    <span class="s0">&lt;/DataGridTemplateColumn&gt;</span>
+
+                    <span class="s3">&lt;!--  </span><span class="s7">Status  </span><span class="s3">--&gt;</span>
+                    <span class="s0">&lt;DataGridTemplateColumn</span>
+                        <span class="s2">MinWidth</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">100</span><span class="s4">&quot;</span>
+                        <span class="s2">Header</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Status</span><span class="s4">&quot;</span>
+                        <span class="s2">SortMemberPath</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">ProgressOperation.Progress</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;DataGridTemplateColumn.CellTemplate&gt;</span>
+                            <span class="s0">&lt;DataTemplate </span><span class="s2">DataType</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Type components:DownloadViewModel}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;Grid&gt;</span>
+                                    <span class="s0">&lt;Grid.ColumnDefinitions&gt;</span>
+                                        <span class="s0">&lt;ColumnDefinition </span><span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                        <span class="s0">&lt;ColumnDefinition </span><span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Auto</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                    <span class="s0">&lt;/Grid.ColumnDefinitions&gt;</span>
+
+                                    <span class="s3">&lt;!--  </span><span class="s7">Progress  </span><span class="s3">--&gt;</span>
+                                    <span class="s0">&lt;ProgressBar</span>
+                                        <span class="s2">Grid.Column</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0</span><span class="s4">&quot;</span>
+                                        <span class="s2">Margin</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0,0,6,0</span><span class="s4">&quot;</span>
+                                        <span class="s2">Foreground</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource SecondaryHueMidBrush}</span><span class="s4">&quot;</span>
+                                        <span class="s2">IsIndeterminate</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding IsProgressIndeterminate}</span><span class="s4">&quot;</span>
+                                        <span class="s2">Maximum</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">1</span><span class="s4">&quot;</span>
+                                        <span class="s2">Minimum</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0</span><span class="s4">&quot;</span>
+                                        <span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Progress.Current.Fraction, Mode=OneWay}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;ProgressBar.Style&gt;</span>
+                                            <span class="s0">&lt;Style </span><span class="s2">BasedOn</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{StaticResource MaterialDesignCircularProgressBar}</span><span class="s4">&quot; </span><span class="s2">TargetType</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Type ProgressBar}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                <span class="s0">&lt;Style.Triggers&gt;</span>
+                                                    <span class="s0">&lt;DataTrigger </span><span class="s2">Binding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Status}</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Static components:DownloadStatus.Enqueued}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Visibility</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Collapsed</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                    <span class="s0">&lt;/DataTrigger&gt;</span>
+                                                    <span class="s0">&lt;DataTrigger </span><span class="s2">Binding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Status}</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Static components:DownloadStatus.Canceled}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Visibility</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Collapsed</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                    <span class="s0">&lt;/DataTrigger&gt;</span>
+                                                    <span class="s0">&lt;DataTrigger </span><span class="s2">Binding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Status}</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Static components:DownloadStatus.Completed}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Visibility</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Collapsed</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                    <span class="s0">&lt;/DataTrigger&gt;</span>
+                                                    <span class="s0">&lt;DataTrigger </span><span class="s2">Binding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Status}</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Static components:DownloadStatus.Failed}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Visibility</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Collapsed</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                    <span class="s0">&lt;/DataTrigger&gt;</span>
+                                                <span class="s0">&lt;/Style.Triggers&gt;</span>
+                                            <span class="s0">&lt;/Style&gt;</span>
+                                        <span class="s0">&lt;/ProgressBar.Style&gt;</span>
+                                    <span class="s0">&lt;/ProgressBar&gt;</span>
+
+                                    <span class="s3">&lt;!--  </span><span class="s7">Status  </span><span class="s3">--&gt;</span>
+                                    <span class="s0">&lt;TextBlock</span>
+                                        <span class="s2">Grid.Column</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">1</span><span class="s4">&quot;</span>
+                                        <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                        <span class="s2">TextTrimming</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">CharacterEllipsis</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;TextBlock.Style&gt;</span>
+                                            <span class="s0">&lt;Style </span><span class="s2">BasedOn</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{StaticResource {x:Type TextBlock}}</span><span class="s4">&quot; </span><span class="s2">TargetType</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Type TextBlock}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                <span class="s0">&lt;Style.Triggers&gt;</span>
+                                                    <span class="s3">&lt;!--  </span><span class="s7">Pending  </span><span class="s3">--&gt;</span>
+                                                    <span class="s0">&lt;DataTrigger </span><span class="s2">Binding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Status}</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Static components:DownloadStatus.Enqueued}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Opacity</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">0.7</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Text</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Pending...</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                    <span class="s0">&lt;/DataTrigger&gt;</span>
+
+                                                    <span class="s3">&lt;!--  </span><span class="s7">Downloading  </span><span class="s3">--&gt;</span>
+                                                    <span class="s0">&lt;DataTrigger </span><span class="s2">Binding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Status}</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Static components:DownloadStatus.Started}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Text</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Progress.Current}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                    <span class="s0">&lt;/DataTrigger&gt;</span>
+
+                                                    <span class="s3">&lt;!--  </span><span class="s7">Successful  </span><span class="s3">--&gt;</span>
+                                                    <span class="s0">&lt;DataTrigger </span><span class="s2">Binding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Status}</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Static components:DownloadStatus.Completed}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Foreground</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource SuccessBrush}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Text</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">✓ Done</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                    <span class="s0">&lt;/DataTrigger&gt;</span>
+
+                                                    <span class="s3">&lt;!--  </span><span class="s7">Canceled  </span><span class="s3">--&gt;</span>
+                                                    <span class="s0">&lt;DataTrigger </span><span class="s2">Binding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Status}</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Static components:DownloadStatus.Canceled}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Foreground</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource CanceledBrush}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Text</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">✗ Canceled</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                    <span class="s0">&lt;/DataTrigger&gt;</span>
+
+                                                    <span class="s3">&lt;!--  </span><span class="s7">Failed  </span><span class="s3">--&gt;</span>
+                                                    <span class="s0">&lt;DataTrigger </span><span class="s2">Binding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding Status}</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Static components:DownloadStatus.Failed}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Foreground</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource FailedBrush}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Text</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">⚠ Failed</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                        <span class="s0">&lt;Setter </span><span class="s2">Property</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">ToolTip</span><span class="s4">&quot; </span><span class="s2">Value</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding ErrorMessage}</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                                    <span class="s0">&lt;/DataTrigger&gt;</span>
+                                                <span class="s0">&lt;/Style.Triggers&gt;</span>
+                                            <span class="s0">&lt;/Style&gt;</span>
+                                        <span class="s0">&lt;/TextBlock.Style&gt;</span>
+                                    <span class="s0">&lt;/TextBlock&gt;</span>
+                                <span class="s0">&lt;/Grid&gt;</span>
+                            <span class="s0">&lt;/DataTemplate&gt;</span>
+                        <span class="s0">&lt;/DataGridTemplateColumn.CellTemplate&gt;</span>
+                    <span class="s0">&lt;/DataGridTemplateColumn&gt;</span>
+
+                    <span class="s3">&lt;!--  </span><span class="s7">Buttons  </span><span class="s3">--&gt;</span>
+                    <span class="s0">&lt;DataGridTemplateColumn </span><span class="s2">MinWidth</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">100</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                        <span class="s0">&lt;DataGridTemplateColumn.CellTemplate&gt;</span>
+                            <span class="s0">&lt;DataTemplate </span><span class="s2">DataType</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{x:Type components:DownloadViewModel}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                <span class="s0">&lt;StackPanel</span>
+                                    <span class="s2">HorizontalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Right</span><span class="s4">&quot;</span>
+                                    <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                    <span class="s2">Orientation</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Horizontal</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                    <span class="s3">&lt;!--  </span><span class="s7">Show file  </span><span class="s3">--&gt;</span>
+                                    <span class="s0">&lt;Button</span>
+                                        <span class="s2">Padding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">4,0,4,0</span><span class="s4">&quot;</span>
+                                        <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                        <span class="s2">s</span><span class="s3">:</span><span class="s2">View.ActionTarget</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding}</span><span class="s4">&quot;</span>
+                                        <span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action ShowFile}</span><span class="s4">&quot;</span>
+                                        <span class="s2">Style</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignFlatButton}</span><span class="s4">&quot;</span>
+                                        <span class="s2">ToolTip</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Show file</span><span class="s4">&quot;</span>
+                                        <span class="s2">Visibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding CanShowFile, Converter={x:Static s:BoolToVisibilityConverter.Instance}}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                                            <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                                            <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                                            <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">FileFindOutline</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                    <span class="s0">&lt;/Button&gt;</span>
+
+                                    <span class="s3">&lt;!--  </span><span class="s7">Open file  </span><span class="s3">--&gt;</span>
+                                    <span class="s0">&lt;Button</span>
+                                        <span class="s2">Padding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">4,0,4,0</span><span class="s4">&quot;</span>
+                                        <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                        <span class="s2">s</span><span class="s3">:</span><span class="s2">View.ActionTarget</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding}</span><span class="s4">&quot;</span>
+                                        <span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action OpenFile}</span><span class="s4">&quot;</span>
+                                        <span class="s2">Style</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignFlatButton}</span><span class="s4">&quot;</span>
+                                        <span class="s2">ToolTip</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Play</span><span class="s4">&quot;</span>
+                                        <span class="s2">Visibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding CanOpenFile, Converter={x:Static s:BoolToVisibilityConverter.Instance}}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                                            <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                                            <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                                            <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">PlayCircleOutline</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                    <span class="s0">&lt;/Button&gt;</span>
+
+                                    <span class="s3">&lt;!--  </span><span class="s7">Cancel download  </span><span class="s3">--&gt;</span>
+                                    <span class="s0">&lt;Button</span>
+                                        <span class="s2">Padding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">4,0,4,0</span><span class="s4">&quot;</span>
+                                        <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                        <span class="s2">s</span><span class="s3">:</span><span class="s2">View.ActionTarget</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding}</span><span class="s4">&quot;</span>
+                                        <span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action Cancel}</span><span class="s4">&quot;</span>
+                                        <span class="s2">Style</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignFlatButton}</span><span class="s4">&quot;</span>
+                                        <span class="s2">ToolTip</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Cancel download</span><span class="s4">&quot;</span>
+                                        <span class="s2">Visibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding CanCancel, Converter={x:Static s:BoolToVisibilityConverter.Instance}}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                                            <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                                            <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                                            <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">CloseCircleOutline</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                    <span class="s0">&lt;/Button&gt;</span>
+
+                                    <span class="s3">&lt;!--  </span><span class="s7">Restart download  </span><span class="s3">--&gt;</span>
+                                    <span class="s0">&lt;Button</span>
+                                        <span class="s2">Padding</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">4,0,4,0</span><span class="s4">&quot;</span>
+                                        <span class="s2">VerticalAlignment</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Center</span><span class="s4">&quot;</span>
+                                        <span class="s2">Command</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{s:Action RestartDownload}</span><span class="s4">&quot;</span>
+                                        <span class="s2">CommandParameter</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding}</span><span class="s4">&quot;</span>
+                                        <span class="s2">Style</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{DynamicResource MaterialDesignFlatButton}</span><span class="s4">&quot;</span>
+                                        <span class="s2">ToolTip</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Restart download</span><span class="s4">&quot;</span>
+                                        <span class="s2">Visibility</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">{Binding IsCanceledOrFailed, Converter={x:Static s:BoolToVisibilityConverter.Instance}}</span><span class="s4">&quot;</span><span class="s0">&gt;</span>
+                                        <span class="s0">&lt;materialDesign</span><span class="s4">:</span><span class="s0">PackIcon</span>
+                                            <span class="s2">Width</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                                            <span class="s2">Height</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">24</span><span class="s4">&quot;</span>
+                                            <span class="s2">Kind</span><span class="s1">=</span><span class="s4">&quot;</span><span class="s5">Restart</span><span class="s4">&quot; </span><span class="s0">/&gt;</span>
+                                    <span class="s0">&lt;/Button&gt;</span>
+                                <span class="s0">&lt;/StackPanel&gt;</span>
+                            <span class="s0">&lt;/DataTemplate&gt;</span>
+                        <span class="s0">&lt;/DataGridTemplateColumn.CellTemplate&gt;</span>
+                    <span class="s0">&lt;/DataGridTemplateColumn&gt;</span>
+                <span class="s0">&lt;/DataGrid.Columns&gt;</span>
+            <span class="s0">&lt;/DataGrid&gt;</span>
+        <span class="s0">&lt;/Grid&gt;</span>
+    <span class="s0">&lt;/Grid&gt;</span>
+<span class="s0">&lt;/UserControl&gt;</span></pre>
+</body>
+</html>

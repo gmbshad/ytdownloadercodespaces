@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>DashboardView.xaml.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c679dd; font-style: italic;}
+.s1 { color: #abb2bf;}
+.s2 { color: #59626f; font-style: italic;}
+.s3 { color: #98c379;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DashboardView.xaml.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">System.Windows.Input;</span>
+
+<span class="s0">namespace </span><span class="s1">YoutubeDownloader.Views.Components;</span>
+
+<span class="s0">public </span><span class="s1">partial </span><span class="s0">class </span><span class="s1">DashboardView</span>
+<span class="s1">{</span>
+    <span class="s0">public </span><span class="s1">DashboardView()</span>
+    <span class="s1">{</span>
+        <span class="s1">InitializeComponent();</span>
+    <span class="s1">}</span>
+    
+    <span class="s0">private void </span><span class="s1">QueryTextBox_OnPreviewKeyDown(</span><span class="s0">object </span><span class="s1">sender, KeyEventArgs e)</span>
+    <span class="s1">{</span>
+        <span class="s2">// Disable new lines when pressing enter without shift</span>
+        <span class="s0">if </span><span class="s1">(e.Key == Key.Enter &amp;&amp; e.KeyboardDevice.Modifiers != ModifierKeys.Shift)</span>
+        <span class="s1">{</span>
+            <span class="s1">e.Handled = </span><span class="s0">true</span><span class="s1">;</span>
+
+            <span class="s2">// We handle the event here so we have to directly &quot;press&quot; the default button</span>
+            <span class="s1">AccessKeyManager.ProcessKey(</span><span class="s0">null</span><span class="s1">, </span><span class="s3">&quot;\x000D&quot;</span><span class="s1">, </span><span class="s0">false</span><span class="s1">);</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

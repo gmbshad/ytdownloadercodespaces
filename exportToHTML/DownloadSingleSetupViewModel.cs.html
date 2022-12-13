@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>DownloadSingleSetupViewModel.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c679dd; font-style: italic;}
+.s1 { color: #abb2bf;}
+.s2 { color: #98c379;}
+.s3 { color: #59626f; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DownloadSingleSetupViewModel.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">System;</span>
+<span class="s0">using </span><span class="s1">System.Collections.Generic;</span>
+<span class="s0">using </span><span class="s1">System.IO;</span>
+<span class="s0">using </span><span class="s1">System.Linq;</span>
+<span class="s0">using </span><span class="s1">System.Windows;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.Core.Downloading;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.Services;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.Utils;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.ViewModels.Components;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.ViewModels.Framework;</span>
+<span class="s0">using </span><span class="s1">YoutubeExplode.Videos;</span>
+
+<span class="s0">namespace </span><span class="s1">YoutubeDownloader.ViewModels.Dialogs;</span>
+
+<span class="s0">public class </span><span class="s1">DownloadSingleSetupViewModel : DialogScreen&lt;DownloadViewModel&gt;</span>
+<span class="s1">{</span>
+    <span class="s0">private readonly </span><span class="s1">IViewModelFactory _viewModelFactory;</span>
+    <span class="s0">private readonly </span><span class="s1">DialogManager _dialogManager;</span>
+    <span class="s0">private readonly </span><span class="s1">SettingsService _settingsService;</span>
+
+    <span class="s0">public </span><span class="s1">IVideo? Video { get; set; }</span>
+
+    <span class="s0">public </span><span class="s1">IReadOnlyList&lt;VideoDownloadOption&gt;? AvailableDownloadOptions { get; set; }</span>
+
+    <span class="s0">public </span><span class="s1">VideoDownloadOption? SelectedDownloadOption { get; set; }</span>
+
+    <span class="s0">public </span><span class="s1">DownloadSingleSetupViewModel(</span>
+        <span class="s1">IViewModelFactory viewModelFactory,</span>
+        <span class="s1">DialogManager dialogManager,</span>
+        <span class="s1">SettingsService settingsService)</span>
+    <span class="s1">{</span>
+        <span class="s1">_viewModelFactory = viewModelFactory;</span>
+        <span class="s1">_dialogManager = dialogManager;</span>
+        <span class="s1">_settingsService = settingsService;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">OnViewLoaded()</span>
+    <span class="s1">{</span>
+        <span class="s1">SelectedDownloadOption = AvailableDownloadOptions?.FirstOrDefault(o =&gt;</span>
+            <span class="s1">o.Container == _settingsService.LastContainer</span>
+        <span class="s1">);</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">CopyTitle() =&gt; Clipboard.SetText(Video!.Title);</span>
+
+    <span class="s0">public void </span><span class="s1">Confirm()</span>
+    <span class="s1">{</span>
+        <span class="s1">var container = SelectedDownloadOption!.Container;</span>
+
+        <span class="s1">var filePath = _dialogManager.PromptSaveFilePath(</span>
+            <span class="s1">$</span><span class="s2">&quot;{container.Name} file|*.{container.Name}&quot;</span><span class="s1">,</span>
+            <span class="s1">FileNameTemplate.Apply(</span>
+                <span class="s1">_settingsService.FileNameTemplate,</span>
+                <span class="s1">Video!,</span>
+                <span class="s1">container</span>
+            <span class="s1">)</span>
+        <span class="s1">);</span>
+
+        <span class="s0">if </span><span class="s1">(</span><span class="s0">string</span><span class="s1">.IsNullOrWhiteSpace(filePath))</span>
+            <span class="s0">return</span><span class="s1">;</span>
+
+        <span class="s3">// Download does not start immediately, so lock in the file path to avoid conflicts</span>
+        <span class="s1">DirectoryEx.CreateDirectoryForFile(filePath);</span>
+        <span class="s1">File.WriteAllBytes(filePath, Array.Empty&lt;</span><span class="s0">byte</span><span class="s1">&gt;());</span>
+
+        <span class="s1">_settingsService.LastContainer = container;</span>
+
+        <span class="s1">Close(</span>
+            <span class="s1">_viewModelFactory.CreateDownloadViewModel(Video!, SelectedDownloadOption!, filePath)</span>
+        <span class="s1">);</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+<span class="s0">public static class </span><span class="s1">DownloadSingleSetupViewModelExtensions</span>
+<span class="s1">{</span>
+    <span class="s0">public static </span><span class="s1">DownloadSingleSetupViewModel CreateDownloadSingleSetupViewModel(</span>
+        <span class="s0">this </span><span class="s1">IViewModelFactory factory,</span>
+        <span class="s1">IVideo video,</span>
+        <span class="s1">IReadOnlyList&lt;VideoDownloadOption&gt; availableDownloadOptions)</span>
+    <span class="s1">{</span>
+        <span class="s1">var viewModel = factory.CreateDownloadSingleSetupViewModel();</span>
+
+        <span class="s1">viewModel.Video = video;</span>
+        <span class="s1">viewModel.AvailableDownloadOptions = availableDownloadOptions;</span>
+
+        <span class="s0">return </span><span class="s1">viewModel;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

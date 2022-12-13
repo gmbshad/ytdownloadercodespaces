@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>DownloadMultipleSetupViewModel.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c679dd; font-style: italic;}
+.s1 { color: #abb2bf;}
+.s2 { color: #98c379;}
+.s3 { color: #d19a66;}
+.s4 { color: #59626f; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#282c34">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DownloadMultipleSetupViewModel.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">System;</span>
+<span class="s0">using </span><span class="s1">System.Collections.Generic;</span>
+<span class="s0">using </span><span class="s1">System.IO;</span>
+<span class="s0">using </span><span class="s1">System.Linq;</span>
+<span class="s0">using </span><span class="s1">System.Windows;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.Core.Downloading;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.Services;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.Utils;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.ViewModels.Components;</span>
+<span class="s0">using </span><span class="s1">YoutubeDownloader.ViewModels.Framework;</span>
+<span class="s0">using </span><span class="s1">YoutubeExplode.Videos;</span>
+<span class="s0">using </span><span class="s1">YoutubeExplode.Videos.Streams;</span>
+
+<span class="s0">namespace </span><span class="s1">YoutubeDownloader.ViewModels.Dialogs;</span>
+
+<span class="s0">public class </span><span class="s1">DownloadMultipleSetupViewModel : DialogScreen&lt;IReadOnlyList&lt;DownloadViewModel&gt;&gt;</span>
+<span class="s1">{</span>
+    <span class="s0">private readonly </span><span class="s1">IViewModelFactory _viewModelFactory;</span>
+    <span class="s0">private readonly </span><span class="s1">DialogManager _dialogManager;</span>
+    <span class="s0">private readonly </span><span class="s1">SettingsService _settingsService;</span>
+
+    <span class="s0">public string</span><span class="s1">? Title { get; set; }</span>
+
+    <span class="s0">public </span><span class="s1">IReadOnlyList&lt;IVideo&gt;? AvailableVideos { get; set; }</span>
+
+    <span class="s0">public </span><span class="s1">IReadOnlyList&lt;IVideo&gt;? SelectedVideos { get; set; }</span>
+
+    <span class="s0">public </span><span class="s1">IReadOnlyList&lt;Container&gt; AvailableContainers { get; } = </span><span class="s0">new</span><span class="s1">[]</span>
+    <span class="s1">{</span>
+        <span class="s1">Container.Mp4,</span>
+        <span class="s1">Container.WebM,</span>
+        <span class="s1">Container.Mp3,</span>
+        <span class="s0">new </span><span class="s1">Container(</span><span class="s2">&quot;ogg&quot;</span><span class="s1">),</span>
+        <span class="s0">new </span><span class="s1">Container(</span><span class="s2">&quot;m4a&quot;</span><span class="s1">)</span>
+    <span class="s1">};</span>
+
+    <span class="s0">public </span><span class="s1">Container SelectedContainer { get; set; } = Container.Mp4;</span>
+
+    <span class="s0">public </span><span class="s1">IReadOnlyList&lt;VideoQualityPreference&gt; AvailableVideoQualityPreferences { get; } =</span>
+        <span class="s1">Enum.GetValues&lt;VideoQualityPreference&gt;().Reverse().ToArray();</span>
+
+    <span class="s0">public </span><span class="s1">VideoQualityPreference SelectedVideoQualityPreference { get; set; } = VideoQualityPreference.Highest;</span>
+
+    <span class="s0">public </span><span class="s1">DownloadMultipleSetupViewModel(</span>
+        <span class="s1">IViewModelFactory viewModelFactory,</span>
+        <span class="s1">DialogManager dialogManager,</span>
+        <span class="s1">SettingsService settingsService)</span>
+    <span class="s1">{</span>
+        <span class="s1">_viewModelFactory = viewModelFactory;</span>
+        <span class="s1">_dialogManager = dialogManager;</span>
+        <span class="s1">_settingsService = settingsService;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">OnViewLoaded()</span>
+    <span class="s1">{</span>
+        <span class="s1">SelectedContainer = _settingsService.LastContainer;</span>
+        <span class="s1">SelectedVideoQualityPreference = _settingsService.LastVideoQualityPreference;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">CopyTitle() =&gt; Clipboard.SetText(Title!);</span>
+
+    <span class="s0">public bool </span><span class="s1">CanConfirm =&gt; SelectedVideos!.Any();</span>
+
+    <span class="s0">public void </span><span class="s1">Confirm()</span>
+    <span class="s1">{</span>
+        <span class="s1">var dirPath = _dialogManager.PromptDirectoryPath();</span>
+        <span class="s0">if </span><span class="s1">(</span><span class="s0">string</span><span class="s1">.IsNullOrWhiteSpace(dirPath))</span>
+            <span class="s0">return</span><span class="s1">;</span>
+
+        <span class="s1">var downloads = </span><span class="s0">new </span><span class="s1">List&lt;DownloadViewModel&gt;();</span>
+        <span class="s0">for </span><span class="s1">(var i = </span><span class="s3">0</span><span class="s1">; i &lt; SelectedVideos!.Count; i++)</span>
+        <span class="s1">{</span>
+            <span class="s1">var video = SelectedVideos[i];</span>
+
+            <span class="s1">var baseFilePath = Path.Combine(</span>
+                <span class="s1">dirPath,</span>
+                <span class="s1">FileNameTemplate.Apply(</span>
+                    <span class="s1">_settingsService.FileNameTemplate,</span>
+                    <span class="s1">video,</span>
+                    <span class="s1">SelectedContainer,</span>
+                    <span class="s1">(i + </span><span class="s3">1</span><span class="s1">).ToString().PadLeft(SelectedVideos.Count.ToString().Length, </span><span class="s2">'0'</span><span class="s1">)</span>
+                <span class="s1">)</span>
+            <span class="s1">);</span>
+
+            <span class="s0">if </span><span class="s1">(_settingsService.ShouldSkipExistingFiles &amp;&amp; File.Exists(baseFilePath))</span>
+                <span class="s0">continue</span><span class="s1">;</span>
+
+            <span class="s1">var filePath = PathEx.EnsureUniquePath(baseFilePath);</span>
+
+            <span class="s4">// Download does not start immediately, so lock in the file path to avoid conflicts</span>
+            <span class="s1">DirectoryEx.CreateDirectoryForFile(filePath);</span>
+            <span class="s1">File.WriteAllBytes(filePath, Array.Empty&lt;</span><span class="s0">byte</span><span class="s1">&gt;());</span>
+
+            <span class="s1">downloads.Add(</span>
+                <span class="s1">_viewModelFactory.CreateDownloadViewModel(</span>
+                    <span class="s1">video,</span>
+                    <span class="s0">new </span><span class="s1">VideoDownloadPreference(SelectedContainer, SelectedVideoQualityPreference),</span>
+                    <span class="s1">filePath</span>
+                <span class="s1">)</span>
+            <span class="s1">);</span>
+        <span class="s1">}</span>
+
+        <span class="s1">_settingsService.LastContainer = SelectedContainer;</span>
+        <span class="s1">_settingsService.LastVideoQualityPreference = SelectedVideoQualityPreference;</span>
+
+        <span class="s1">Close(downloads);</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+
+<span class="s0">public static class </span><span class="s1">DownloadMultipleSetupViewModelExtensions</span>
+<span class="s1">{</span>
+    <span class="s0">public static </span><span class="s1">DownloadMultipleSetupViewModel CreateDownloadMultipleSetupViewModel(</span>
+        <span class="s0">this </span><span class="s1">IViewModelFactory factory,</span>
+        <span class="s0">string </span><span class="s1">title,</span>
+        <span class="s1">IReadOnlyList&lt;IVideo&gt; availableVideos,</span>
+        <span class="s0">bool </span><span class="s1">preselectVideos = </span><span class="s0">true</span><span class="s1">)</span>
+    <span class="s1">{</span>
+        <span class="s1">var viewModel = factory.CreateDownloadMultipleSetupViewModel();</span>
+
+        <span class="s1">viewModel.Title = title;</span>
+        <span class="s1">viewModel.AvailableVideos = availableVideos;</span>
+        <span class="s1">viewModel.SelectedVideos = preselectVideos</span>
+            <span class="s1">? availableVideos</span>
+            <span class="s1">: Array.Empty&lt;IVideo&gt;();</span>
+
+        <span class="s0">return </span><span class="s1">viewModel;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
